@@ -25,8 +25,6 @@ async def on_member_join(member):
     await General_channel.send('Appeler moi avec la commande' + '"!"' + 'votreMessage')
     
 
-   
-
   
 
 # Début de l'existence du bot
@@ -34,6 +32,7 @@ async def on_member_join(member):
 async def on_message(message):
     message.content = message.content.lower()
     msg = message.content
+    global actual_node
 
     if message.author == client.user:
         return
@@ -59,11 +58,19 @@ async def on_message(message):
     if message.content.startswith('$bonjour'):
         await message.channel.send("Bonjour " + message.author.name + " !")
 
-
     # Commencer la discussion
-    if test_node.key_word in message.content:
-        await message.channel.send(test_node.question)
-        test_node = test_node.list_node
+   
+    if actual_node.key_word in message.content:
+        await message.channel.send(actual_node.question)
+        
+    for Node in actual_node.list_node:
+        if Node.key_word in message.content:
+            await message.channel.send(Node.question)
+            actual_node = Node
+            
+        
+
+ 
 
         
 
