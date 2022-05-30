@@ -1,8 +1,10 @@
 class Node : 
-    def __init__(self, question, keyword, list_node): 
+    def __init__(self, question, keyword, list_node, target): 
         self.question = question
         self.key_word = keyword
         self.list_node = list_node
+        self.target = target
+        
 
    
 
@@ -12,6 +14,28 @@ first_node = Node("Comment puis-je vous aidez ?","help",
 [Node("Sur quel sujet ?", "cours",[Node("Sur quel cours en particulier ?", 'python', [])]), 
 Node("Sur quel domaine ?", "fichier",["Sur quel fichier en particulier"])])
 
-actual_node = nodePrincipal
+nodeGaming = Node("Bienvenue dans le Game'Otron. Je vais vous poser des questions et ensuite je vous indiquerai le style de jeu qui vous correspond le plus. Vous devrez répondre par 'oui' ou 'non'. Êtes vous prêt ?", "jeu",
+[Node("Sur quel sujet ?", "oui",[Node("Sur quel cours en particulier ?", 'python', [])]), 
+Node("Sur quel domaine ?", "fichier",["Sur quel fichier en particulier"])])
+
+''' liste choix à donner en guise de réponse '''
+Action = 0
+Aventure = 0
+Arcade = 0
+Combat = 0 
+Sportif = 0
+Musique = 0
+Fete = 0
+Plateformes = 0
+Casse_tête = 0 
+Course = 0 
+Rpg = 0
+Jeu_de_tir = 0 
+Simulation = 0 
+Sports = 0 
+Stratégie = 0
+
+
+actual_node = nodeGaming
 
 
