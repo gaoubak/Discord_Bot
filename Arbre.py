@@ -1,8 +1,9 @@
 class Node : 
-    def __init__(self, question, keyword, list_node ): 
+    def __init__(self, question, keyword, list_node): 
         self.question = question
         self.key_word = keyword
         self.list_node = list_node
+        
         
 
    
