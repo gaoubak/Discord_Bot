@@ -5,6 +5,7 @@ from discord.ext import commands
 import json
 from Arbre import *
 
+
 intents = discord.Intents.all()
 
 # La commande commence par '!'
@@ -52,6 +53,8 @@ async def on_message(message):
     # Supprimer les 3 derniers messages.
     if message.content == "del":
         await message.channel.purge(limit=3)
+    if message.content == "stop":
+        quit()
 
     
     # Dire bonjour 
@@ -76,7 +79,6 @@ async def on_message(message):
 
     if message.content.startswith('$aidemoipour'):
         test = msg.split("$aidemoipour ",1)[1]
-        
         await message.channel.send(test)
 
         
