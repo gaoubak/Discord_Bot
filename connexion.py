@@ -1,4 +1,5 @@
 import mysql.connector
+from pygame import Cursor
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -6,4 +7,6 @@ mydb = mysql.connector.connect(
   password="yourpassword"
 )
 
-print(mydb)
+mycursor = mydb.cursor()
+mycursor.execute()
+myresult = mycursor.fetchall()
