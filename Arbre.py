@@ -1,9 +1,8 @@
 class Node : 
-    def __init__(self, question, keyword, list_node, target): 
+    def __init__(self, question, keyword, list_node ): 
         self.question = question
         self.key_word = keyword
         self.list_node = list_node
-        self.target = target
         
 
    
@@ -17,6 +16,8 @@ Node("Sur quel domaine ?", "fichier",["Sur quel fichier en particulier"])])
 nodeGaming = Node("Bienvenue dans le Game'Otron. Je vais vous poser des questions et ensuite je vous indiquerai le style de jeu qui vous correspond le plus. Vous devrez répondre par 'oui' ou 'non'. Êtes vous prêt ?", "jeu",
 [Node("Sur quel sujet ?", "oui",[Node("Sur quel cours en particulier ?", 'python', [])]), 
 Node("Sur quel domaine ?", "fichier",["Sur quel fichier en particulier"])])
+
+nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon")
 
 ''' liste choix à donner en guise de réponse '''
 Action = 0
