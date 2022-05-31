@@ -1,5 +1,4 @@
 import mysql.connector
-from pygame import Cursor
 
 mydb = mysql.connector.connect(
   host="localhost",

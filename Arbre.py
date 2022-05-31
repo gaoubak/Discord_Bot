@@ -1,3 +1,4 @@
+from connexion import *
 class Node : 
     def __init__(self, question, keyword, list_node): 
         self.question = question
@@ -21,7 +22,8 @@ Node("Sur quel domaine ?", "non",["Bon bah rip"])])
 nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon")
 
 ''' liste choix à donner en guise de réponse '''
-Action = 0
+mycursor.execute("SELECT * FROM pokemon where name = ")
+
 Aventure = 0
 Arcade = 0
 Combat = 0 
@@ -37,7 +39,7 @@ Simulation = 0
 Sports = 0 
 Stratégie = 0
 
-
-actual_node = nodeGaming
+myresult = mycursor.fetchall()
+actual_node = nodeByKade
 
 
