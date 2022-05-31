@@ -18,7 +18,7 @@ nodeGaming = Node("Bienvenue dans le Game'Otron. Je vais vous poser des question
 [Node("Sur quel sujet ?", "oui",[Node("Sur quel cours en particulier ?", 'python', [])]), 
 Node("Sur quel domaine ?", "non",["Bon bah rip"])])
 
-nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon")
+nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon", "pokemon", [])
 
 ''' liste choix à donner en guise de réponse '''
 Action = 0
@@ -38,6 +38,6 @@ Sports = 0
 Stratégie = 0
 
 
-actual_node = nodeGaming
+actual_node = nodeByKade
 
 
