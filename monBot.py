@@ -120,20 +120,19 @@ async def on_message(message):
             type_1 = value[2]
             type_2 = value[3]
             evolue_avec = value[4]
-            description = value[5]
+            description_pok = value[5]
             dresseur = value[6]
             couleur = value[7]
 
         embed = discord.Embed(
-            title = value[0] + " " + value[1],
-            description = value[5],
+            title = nom_pok,
+            description = description_pok,
             color = discord.Color.red()
         )
-        embed.set_thumbnail(url = value[1])
-        embed.add_field(name="Owner", value=owner, inline=True)
-        embed.add_field(name="Server Id", value=id, inline=True)
-        embed.add_field(name="Region", value=region, inline=True)
-        embed.add_field(name="Member Count", value=member_count, inline=True)
+        embed.add_field(name="Type 1", value=type_1, inline=True)
+        embed.add_field(name="Type 2", value=type_2, inline=True)
+        embed.add_field(name="Region", value=nom_pok, inline=True)
+        embed.add_field(name="Member Count", value=nom_pok, inline=True)
         
         await message.channel.send(embed = embed)
 
