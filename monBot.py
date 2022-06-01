@@ -1,4 +1,5 @@
 from asyncio import events
+from importlib.metadata import files
 import discord
 from random import randint 
 from discord.ext import commands
@@ -62,17 +63,18 @@ async def on_message(message):
     message.content = message.content.lower()
     msg = message.content
     global actual_node
+    global nom_pok
 
     if message.author == client.user:
         return
 
     # Dans le channel help uniquement
     Help_channel = client.get_channel(978271654608261180)
-    if message.channel == Help_channel and message.content.startswith('$help'):
+    if message.channel == Help_channel and message.content.startswith('$cmd'):
         await Help_channel.send('Tu es au bonne endroit :)')
     # Fin de l'instruction
 
-    if message.channel != Help_channel and message.content.startswith('$help'):
+    if message.channel != Help_channel and message.content.startswith('$cmd'):
         if message.author.id == 332936281887604747:
             await message.channel.send('Salut boss !')
         else :
@@ -99,42 +101,71 @@ async def on_message(message):
             actual_node = Node
             
         
-
- 
-
-        
-
     if message.content.startswith('$aidemoipour'):
         content = msg.split("$aidemoipour ",1)[1]
         await message.channel.send(content)
 
-    if message.content.startswith('$randopok'):
-        ''' content = msg.split("$randopok ",1)[1] '''
-        random = str(randint(1, 151))
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM pokemon where id_pok = " + random)
-        myresult = mycursor.fetchall()
-        for value in myresult:
-            id_pok = value[0]
-            nom_pok = value[1]
-            type_1 = value[2]
-            type_2 = value[3]
-            evolue_avec = value[4]
-            description_pok = value[5]
-            dresseur = value[6]
-            couleur = value[7]
+    # afficher les commande
+    if message.content.startswith('$help'):
+        cmd_1 = "Le bot choisit aléatoirement un pokemon de la première génération."
+        cmd_2 = "Vous permet d'entrer une réponse."
+        cmd_3 = "Supprime les 3 derniers messages du bot."
+        cmd_4 = "Le bot vous dit bonjour."
+        embed2 = discord.Embed(
+                title = "Commande of the Ri bot",
+                description = "Vous trouverez ici un resumé de chaque commande du bot",
+                color = discord.Color.green()
+            )
+        embed2.add_field(name="$randopok", value=cmd_1, inline=True)
+        embed2.add_field(name="$r", value=cmd_2, inline=True)
+        embed2.add_field(name="del", value=cmd_3, inline=True)
+        embed2.add_field(name="$bonjour", value=cmd_4, inline=True)
 
-        embed = discord.Embed(
-            title = nom_pok,
-            description = description_pok,
-            color = discord.Color.red()
-        )
-        embed.add_field(name="Type 1", value=type_1, inline=True)
-        embed.add_field(name="Type 2", value=type_2, inline=True)
-        embed.add_field(name="Region", value=nom_pok, inline=True)
-        embed.add_field(name="Member Count", value=nom_pok, inline=True)
+        await message.channel.send(embed = embed2)
+
+    if message.content.startswith('$randopok'):
+        if(nom_pok == ""):
+            random = str(randint(1, 151))
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT * FROM pokemon where id_pok = " + random)
+            myresult = mycursor.fetchall()
+            for value in myresult:
+                id_pok = value[0]
+                nom_pok = value[1]
+                type_1 = value[2]
+                type_2 = value[3]
+                evolue_avec = value[4]
+                description_pok = value[5]
+            
         
-        await message.channel.send(embed = embed)
+            embed = discord.Embed(
+                title = "Pokemon mystère !",
+                description = description_pok,
+                color = discord.Color.red()
+            )
+
+            embed.add_field(name="Type1", value=type_1, inline=True)
+
+            if(type_2 != ""):
+                embed.add_field(name="Type2", value=type_2, inline=True)
+
+            if(evolue_avec != ""):
+                embed.add_field(name="Info évolution", value=evolue_avec, inline=True)
+            
+            
+            await message.channel.send(embed = embed)
+        else:
+            await message.channel.send("Vous n'avez pas trouvé le pokémon précèdent... :(")
+
+    if message.content.startswith('$r'):
+        content = msg.split("$r ",1)[1]
+        print(nom_pok)
+        if(content == nom_pok.lower()):
+            await message.channel.send('Bravo tu as trouvé la réponse')
+            nom_pok = ""
+            #message.channel.send({files:['16525125881824983156.png']})
+        else:
+            await message.channel.send('Echec...')
 
     
 

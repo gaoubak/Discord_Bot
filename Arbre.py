@@ -24,21 +24,7 @@ nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur le
 ''' liste choix à donner en guise de réponse '''
 ''' mycursor.execute("SELECT * FROM pokemon where name = `pikachu` ") '''
 
-Aventure = 0
-Arcade = 0
-Combat = 0 
-Sportif = 0
-Musique = 0
-Fete = 0
-Plateformes = 0
-Casse_tête = 0 
-Course = 0 
-Rpg = 0
-Jeu_de_tir = 0 
-Simulation = 0 
-Sports = 0 
-Stratégie = 0
-
+nom_pok = ""
 actual_node = nodeByKade
 
 
