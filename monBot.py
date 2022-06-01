@@ -4,6 +4,7 @@ from random import randint
 from discord.ext import commands
 import json
 from Arbre import *
+from connexion import *
 
 
 intents = discord.Intents.all()
@@ -16,6 +17,33 @@ client = commands.Bot(command_prefix="!", intents=intents)
 async def coucou(ctx):
     await ctx.channel.purge(limit=1)
     await ctx.send("Coucou !")
+
+
+@client.command()
+async def server(ctx):
+    name = ctx.guild.name
+    description = ctx.guild.description
+    owner = ctx.guild.owner
+    id = ctx.guild.id
+    region = ctx.guild.region
+    member_count = ctx.guild.member_count
+    icon = ctx.guild.icon_url
+
+    embed = discord.Embed(
+        title = name ,
+        description = description,
+        color = discord.Color.red()
+    )
+    embed.set_thumbnail(url = icon)
+    embed.add_field(name="Owner", value=owner, inline=True)
+    embed.add_field(name="Server Id", value=id, inline=True)
+    embed.add_field(name="Region", value=region, inline=True)
+    embed.add_field(name="Member Count", value=member_count, inline=True)
+    
+    await ctx.send(embed = embed)
+
+
+        
 
 
 # Si un membre nous rejoint
@@ -53,8 +81,7 @@ async def on_message(message):
     # Supprimer les 3 derniers messages.
     if message.content == "del":
         await message.channel.purge(limit=3)
-    if message.content == "stop":
-        quit()
+    
 
     
     # Dire bonjour 
@@ -78,8 +105,39 @@ async def on_message(message):
         
 
     if message.content.startswith('$aidemoipour'):
-        test = msg.split("$aidemoipour ",1)[1]
-        await message.channel.send(test)
+        content = msg.split("$aidemoipour ",1)[1]
+        await message.channel.send(content)
+
+    if message.content.startswith('$randopok'):
+        ''' content = msg.split("$randopok ",1)[1] '''
+        random = str(randint(1, 151))
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM pokemon where id_pok = " + random)
+        myresult = mycursor.fetchall()
+        for value in myresult:
+            id_pok = value[0]
+            nom_pok = value[1]
+            type_1 = value[2]
+            type_2 = value[3]
+            evolue_avec = value[4]
+            description = value[5]
+            dresseur = value[6]
+            couleur = value[7]
+
+        embed = discord.Embed(
+            title = value[0] + " " + value[1],
+            description = value[5],
+            color = discord.Color.red()
+        )
+        embed.set_thumbnail(url = value[1])
+        embed.add_field(name="Owner", value=owner, inline=True)
+        embed.add_field(name="Server Id", value=id, inline=True)
+        embed.add_field(name="Region", value=region, inline=True)
+        embed.add_field(name="Member Count", value=member_count, inline=True)
+        
+        await message.channel.send(embed = embed)
+
+    
 
         
 

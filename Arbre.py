@@ -22,7 +22,7 @@ Node("Sur quel domaine ?", "non",["Bon bah rip"])])
 nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon", "pokemon", [])
 
 ''' liste choix à donner en guise de réponse '''
-mycursor.execute("SELECT * FROM pokemon where name = `pikachu` ")
+''' mycursor.execute("SELECT * FROM pokemon where name = `pikachu` ") '''
 
 Aventure = 0
 Arcade = 0
