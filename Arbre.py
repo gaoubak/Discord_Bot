@@ -40,8 +40,6 @@ nodePrincipal = Node("Au rapport !", "help", [nodeProgrammation, nodePokemon])
 ###
 
 
-#nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon", "pokemon", [])
-
 # Variables globales qui nous sont utiles dans monBot.py 
 nom_pok = ""
 memory_node = [nodePrincipal]
