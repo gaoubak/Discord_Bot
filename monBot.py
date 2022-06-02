@@ -202,4 +202,5 @@ async def on_message(message):
 
     await client.process_commands(message)
 
+# Par mesure de sécurité, j'ai été obligé de retiré mon token.
 client.run('')
