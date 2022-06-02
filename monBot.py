@@ -107,9 +107,6 @@ async def on_message(message):
         embed2.add_field(name="$pokedex", value=cmd_7, inline=True)
 
         
-        
-
-
         await message.channel.send(embed = embed2)
 
 
