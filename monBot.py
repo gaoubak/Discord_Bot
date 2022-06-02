@@ -26,7 +26,7 @@ client = commands.Bot(command_prefix="!", intents=intents)
 @client.event
 async def on_member_join(member):
     General_channel = client.get_channel(978261134878605424)
-    await General_channel.send('Bonjour ' + member.display_name + 'Taper "$help" pour connaitre mes fonctionnalités.')
+    await General_channel.send('Bonjour ' + member.display_name + ' Taper "$help" pour connaitre mes fonctionnalités.')
  
 
 
@@ -38,6 +38,7 @@ async def on_message(message):
     global actual_node
     global nom_pok
     global memory_node
+
 
     if message.author == client.user:
         return
@@ -76,17 +77,21 @@ async def on_message(message):
     for Node in actual_node.list_node:
         if Node.key_word in message.content:
             await message.channel.send(Node.question)
+            memory_node.append(Node)
             actual_node = Node
-        
-    
 
-    #for Node in actual_node.list_node:
-     #   print(Node.key_word)
-      #  if Node.key_word in message.content:
-       #     await message.channel.send(Node.question)
-        #actual_node = Node
+    # Si l'utilisateur souhaite reset complètement la discussion
+    if message.content.startswith('$reset'):
+        actual_node = nodePrincipal
+        await message.channel.send(actual_node.question)
 
-            
+    # Si l'utilisateur veux retourner en arrière dans la conversation
+    # On stock le chemin qu'il a parcouru dans une liste, puis on remonte la liste
+    # en retirant le dernier élément de la liste memory_node à chaque fois.
+    if message.content.startswith('$retour'):
+        memory_node.pop()
+        actual_node = memory_node[len(memory_node)-1]
+        await message.channel.send(actual_node.question)          
             
         
     if message.content.startswith('$moderateur'):
@@ -96,25 +101,34 @@ async def on_message(message):
 
     # afficher les commande
     if message.content.startswith('$help'):
-        cmd_1 = "Le bot aléatoirement un pokemon de la première génération."
-        cmd_2 = "Vous permet d'entrer une réponse."
+        cmd_1 = "Le bot choisi aléatoirement un pokemon de la première génération."
+        cmd_2 = "Vous permet d'entrer une réponse pour le randopok."
         cmd_6 = "Relance le jeu et choisi un nouveau pokémon"
         cmd_3 = "Supprime les X derniers messages dans le channel."
         cmd_4 = "Le bot vous dit bonjour."
         cmd_5 = "Permet d'appeler un modérateur."
-        cmd_7 = "Permet d'obtenir un lien vers la page d'un pokémon."
+        cmd_7 = "Permet d'obtenir un lien vers la page d'un pokemon selon le 'nom'."
+        cmd_8 = "Permet de reset la conversation que vous avez eu avec le bot"
+        cmd_9 = "Permet de retourner en arrière dans la conversation si vous avez fait un mauvais choix"
+        cmd_10 = "Lance une discussion avec le bot à propos d'un certain pokémon"
+        cmd_11 = "Lance une discussion avec le bot à propos des langages de programmation"
         embed2 = discord.Embed(
-                title = "Commande of the Ri bot",
+                title = "Les commandes du bot",
                 description = "Vous trouverez ici un resumé de chaque commande du bot",
                 color = discord.Color.green()
             )
         embed2.add_field(name="$randopok", value=cmd_1, inline=True)
-        embed2.add_field(name="$r", value=cmd_2, inline=True)
+        embed2.add_field(name="$reponse", value=cmd_2, inline=True)
         embed2.add_field(name="$randopokreset", value=cmd_6, inline=True)
         embed2.add_field(name="$del X", value=cmd_3, inline=True)
         embed2.add_field(name="$bonjour", value=cmd_4, inline=True)
         embed2.add_field(name="$moderateur", value=cmd_5, inline=True)
-        embed2.add_field(name="$pokedex", value=cmd_7, inline=True)
+        embed2.add_field(name="$pokedex nom", value=cmd_7, inline=True)
+        embed2.add_field(name="$reset", value=cmd_8, inline=True)
+        embed2.add_field(name="$retour", value=cmd_9, inline=True)
+        embed2.add_field(name="pokemon", value=cmd_10, inline=True)
+        embed2.add_field(name="langage", value=cmd_11, inline=True)
+
 
         
         await message.channel.send(embed = embed2)
@@ -158,8 +172,8 @@ async def on_message(message):
 
 
     # Pour envoyer ça réponse, on tape '$r nomDuPokemon'
-    if message.content.startswith('$r'):
-        content = msg.split("$r ",1)[1]
+    if message.content.startswith('$reponse'):
+        content = msg.split("$reponse ",1)[1]
         if(content == nom_pok.lower()):
             await message.channel.send('Bravo tu as trouvé la réponse')
             await message.channel.send(file=discord.File('./1G/'+ nom_pok + '.gif'))
