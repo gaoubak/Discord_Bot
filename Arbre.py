@@ -9,22 +9,21 @@ class Node :
 
    
 
-nodePrincipal = Node("Ceci est un node de test", "test", [Node("Tu es dans le second node de test", "deux", [Node("Tu es dans le troisieme node de test", "trois", [])])])
+nodePrincipal = Node("Besoin d'aide sur quel language de programmation ?", "programme", 
+[Node("Voici une documentation sur PHP : https://www.php.net/manual/fr/", "php", []),
+Node("Voici une documentation sur HTML : https://www.php.net/manual/fr/", "html", [])] 
+)
 
-first_node = Node("Comment puis-je vous aidez ?","help",
+first_node = Node("Dites moi tout, je suis là !","$cours",
 [Node("Sur quel sujet ?", "cours",[Node("Sur quel cours en particulier ?", 'python', [])]), 
 Node("Sur quel domaine ?", "fichier",["Sur quel fichier en particulier"])])
 
-nodeGaming = Node("Bienvenue dans le Game'Otron. Je vais vous poser des questions et ensuite je vous indiquerai le style de jeu qui vous correspond le plus. Vous devrez répondre par 'oui' ou 'non'. Êtes vous prêt ?", "jeu",
-[Node("Sur quel sujet ?", "oui",[Node("Sur quel cours en particulier ?", 'python', [])]), 
-Node("Sur quel domaine ?", "non",["Bon bah rip"])])
 
 nodeByKade = Node("Bienvenue sur le  Botkedex , est un outil de recherche sur les Pokémon. Il enregistre et apprend aux dresseurs les caractéristiques de chaque Pokémon", "pokemon", [])
 
 ''' liste choix à donner en guise de réponse '''
-''' mycursor.execute("SELECT * FROM pokemon where name = `pikachu` ") '''
 
 nom_pok = ""
-actual_node = nodeByKade
+actual_node = nodePrincipal
 
 
