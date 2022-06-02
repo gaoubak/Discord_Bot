@@ -19,39 +19,14 @@ async def coucou(ctx):
     await ctx.channel.purge(limit=1)
     await ctx.send("Coucou !")
 
-
-@client.command()
-async def server(ctx):
-    name = ctx.guild.name
-    description = ctx.guild.description
-    owner = ctx.guild.owner
-    id = ctx.guild.id
-    region = ctx.guild.region
-    member_count = ctx.guild.member_count
-    icon = ctx.guild.icon_url
-
-    embed = discord.Embed(
-        title = name ,
-        description = description,
-        color = discord.Color.red()
-    )
-    embed.set_thumbnail(url = icon)
-    embed.add_field(name="Owner", value=owner, inline=True)
-    embed.add_field(name="Server Id", value=id, inline=True)
-    embed.add_field(name="Region", value=region, inline=True)
-    embed.add_field(name="Member Count", value=member_count, inline=True)
-    
-    await ctx.send(embed = embed)
+      
 
 
-        
-
-
-# Si un membre nous rejoint
+# Si un membre nous rejoint, envoi un message de salutation.
 @client.event
 async def on_member_join(member):
     General_channel = client.get_channel(978261134878605424)
-    await General_channel.send('Bonjour ' + member.display_name + 'Je suis là pour vous aider à trouver de la documentation.')
+    await General_channel.send('Bonjour ' + member.display_name + 'Taper "$help" pour savoir ce que je fais.')
     await General_channel.send('Appeler moi avec la commande' + '"!"' + 'votreMessage')
     
 
@@ -69,16 +44,16 @@ async def on_message(message):
         return
 
     # Dans le channel help uniquement
-    Help_channel = client.get_channel(978271654608261180)
-    if message.channel == Help_channel and message.content.startswith('$cmd'):
-        await Help_channel.send('Tu es au bonne endroit :)')
+    #Help_channel = client.get_channel(978271654608261180)
+    #if message.channel == Help_channel and message.content.startswith('$cmd'):
+        #await Help_channel.send('Tu es au bonne endroit :)')
     # Fin de l'instruction
 
-    if message.channel != Help_channel and message.content.startswith('$cmd'):
-        if message.author.id == 332936281887604747:
-            await message.channel.send('Salut boss !')
-        else :
-            await message.channel.send('Bonjour, je suis ton heureux serviteur !')
+    #if message.channel != Help_channel and message.content.startswith('$cmd'):
+        #if message.author.id == 332936281887604747:
+            #await message.channel.send('Salut boss !')
+        #else :
+            #await message.channel.send('Bonjour, je suis ton heureux serviteur !')
 
     # Supprimer les 3 derniers messages.
     if message.content == "del":
@@ -109,7 +84,7 @@ async def on_message(message):
     if message.content.startswith('$help'):
         cmd_1 = "Le bot choisit aléatoirement un pokemon de la première génération."
         cmd_2 = "Vous permet d'entrer une réponse."
-        cmd_3 = "Supprime les 3 derniers messages du bot."
+        cmd_3 = "Supprime les 3 derniers messages dans le channel."
         cmd_4 = "Le bot vous dit bonjour."
         embed2 = discord.Embed(
                 title = "Commande of the Ri bot",
@@ -123,6 +98,8 @@ async def on_message(message):
 
         await message.channel.send(embed = embed2)
 
+
+    # Choisi un pokémon aléatoirement
     if message.content.startswith('$randopok'):
         if(nom_pok == ""):
             random = str(randint(1, 151))
@@ -157,13 +134,14 @@ async def on_message(message):
         else:
             await message.channel.send("Vous n'avez pas trouvé le pokémon précèdent... :(")
 
+
+    # Pour envoyer ça réponse, on tape '$r nomDuPokemon'
     if message.content.startswith('$r'):
         content = msg.split("$r ",1)[1]
-        print(nom_pok)
         if(content == nom_pok.lower()):
             await message.channel.send('Bravo tu as trouvé la réponse')
+            await message.channel.send(file=discord.File('./1G/'+ nom_pok + '.gif'))
             nom_pok = ""
-            #message.channel.send({files:['16525125881824983156.png']})
         else:
             await message.channel.send('Echec...')
 
