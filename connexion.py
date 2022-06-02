@@ -7,6 +7,3 @@ mydb = mysql.connector.connect(
   db="pokedex"
 )
 
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM pokemon where nom_pok = 'pikachu' ")
-myresult = mycursor.fetchall()

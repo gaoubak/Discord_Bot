@@ -37,6 +37,7 @@ async def on_message(message):
     msg = message.content
     global actual_node
     global nom_pok
+    global memory_node
 
     if message.author == client.user:
         return
@@ -68,14 +69,23 @@ async def on_message(message):
         await message.channel.send("Bonjour " + message.author.name + " !")
 
     # Commencer la discussion
-   
-    #if actual_node.key_word in message.content:
-     #   await message.channel.send(actual_node.question)
+    if actual_node.key_word in message.content:
+        await message.channel.send(actual_node.question)
+
+    # Gestion des nodes (recherche et affichage)
+    for Node in actual_node.list_node:
+        if Node.key_word in message.content:
+            await message.channel.send(Node.question)
+            actual_node = Node
         
+    
+
     #for Node in actual_node.list_node:
-     #   if Node.key_word in message.content:
-      #      await message.channel.send(Node.question)
-       #     actual_node = Node
+     #   print(Node.key_word)
+      #  if Node.key_word in message.content:
+       #     await message.channel.send(Node.question)
+        #actual_node = Node
+
             
             
         
