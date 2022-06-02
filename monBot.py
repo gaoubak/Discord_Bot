@@ -112,6 +112,33 @@ async def on_message(message):
 
     # Choisi un pokémon aléatoirement
     if message.content.startswith('$randopok'):
+<<<<<<< HEAD
+        ''' content = msg.split("$randopok ",1)[1] '''
+        random = str(randint(1, 151))
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM pokemon where id_pok = " + random)
+        myresult = mycursor.fetchall()
+        for value in myresult:
+            id_pok = value[0]
+            nom_pok = value[1]
+            type_1 = value[2]
+            type_2 = value[3]
+            evolue_avec = value[4]
+            description_pok = value[5]
+            dresseur = value[6]
+            couleur = value[7]
+
+        embed = discord.Embed(
+            title = nom_pok,
+            description = description_pok,
+            color = discord.Color.red()
+        )
+        embed.add_field(name="Type 1", value=type_1, inline=True)
+        embed.add_field(name="Type 2", value=type_2, inline=True)
+        embed.add_field(name="Region", value=nom_pok, inline=True)
+        embed.add_field(name="evolution", value=evolue_avec, inline=True)
+        embed.add_field(name="Member Count", value=nom_pok, inline=True)
+=======
         if(nom_pok == "") or message.content.startswith('$randopokreset'):
             random = str(randint(1, 151))
             mycursor = mydb.cursor()
@@ -125,6 +152,7 @@ async def on_message(message):
                 evolue_avec = value[4]
                 description_pok = value[5]
             
+>>>>>>> 689b744140c9c19d19a3f1a88a68bad6346fd893
         
             embed = discord.Embed(
                 title = "Pokemon mystère !",
