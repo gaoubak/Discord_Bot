@@ -132,6 +132,7 @@ async def on_message(message):
         embed.add_field(name="Type 1", value=type_1, inline=True)
         embed.add_field(name="Type 2", value=type_2, inline=True)
         embed.add_field(name="Region", value=nom_pok, inline=True)
+        embed.add_field(name="evolution", value=evolue_avec, inline=True)
         embed.add_field(name="Member Count", value=nom_pok, inline=True)
         
         await message.channel.send(embed = embed)
