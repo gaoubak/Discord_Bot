@@ -3,7 +3,7 @@
 ## Explication du projet
 
 Création d'un bot discord en Python, avec le package discord py, permettant à un novice en programmation de récupérer des ressources 
-éducatives sur des langages de programmations.
+éducatives sur des langages de programmation.
 
 
 ## Les fonctionnalités du site
