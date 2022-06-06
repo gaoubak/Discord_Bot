@@ -2,13 +2,15 @@
 
 ## Explication du projet
 
-Création d'un bot discord en Python avec le package discord py.
+Création d'un bot discord en Python, avec le package discord py, permettant à un novice en programmation de récupérer des ressources 
+éducatives sur des langages de programmations.
+
 
 ## Les fonctionnalités du site
 
 | Fonctionnalité             | Disponibilité | Bug                                   | 
 | ------------------- | -- | ---------------------------------------- | 
-| o	Pouvoir faire une petite conversation afin de cibler le besoin de l’utilisateur       | ✅ |  |
+| o	Une commande pour lancer une petite conversation afin de cibler le besoin de l’utilisateur       | ✅ |  |
 | o	Une commande de demande d’aide sur l’utilisation du bot                                                          | ✅             | |
 | o	Une commande de retour en arrière si on a fait le mauvais choix                                                  | ✅             | |
 | o	Une commande de reset pour recommencer la conversation                                                                 | ✅             | |               
