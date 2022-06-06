@@ -15,7 +15,7 @@ Création d'un bot discord en Python, avec le package discord py, permettant à 
 | o	Une commande de retour en arrière si on a fait le mauvais choix                                                  | ✅             | 
 | o	Une commande de reset pour recommencer la conversation                                                                 | ✅             |                
 | o	Une commande permettant d’appeler un modérateur pour avoir de l’aide| ✅             |          
-| o	Une commande permettant de jouer avec le bot à un jeu  | ✅             | 
+| o	Une commande permettant de jouer à un jeu avec le bot  | ✅             | 
 | o	Une commande permettant de reset le jeu  | ✅             | 
 | o Une commande permettant de taper le nom d'un pokémon et recevoir en retour un lien vers la page pokédex de ce pokémon | ✅             |   
 
